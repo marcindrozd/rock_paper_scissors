@@ -1,6 +1,19 @@
 # Rock, paper, scissors
 CHOICES = {"p" => "paper", "r" => "rock", "s" => "scissors"}
 
+def display_winning_message(winning_choice, winner, losing_choice, loser)
+  puts "#{winner} picked #{CHOICES[winning_choice]}, #{loser} picked #{CHOICES[losing_choice]}"
+  case winning_choice
+    when "p"
+      puts "Paper wraps rock!"
+    when "s"
+      puts "Scissors cut through paper!"
+    when "r"
+      puts "Rock smashes scissors!"
+  end
+  puts "#{winner} wins!"
+end
+
 puts "Play Paper Rock Scissors!"
 
 while true
@@ -14,30 +27,10 @@ while true
 
   if computer_choice == player_choice
     puts "It's a tie!"
-  elsif player_choice == "p" && computer_choice == "s"
-    puts "You picked Paper and computer picked Scissors."
-    puts "Scissors cut through paper."
-    puts "Computer wins!"
-  elsif player_choice == "s" && computer_choice == "r"
-    puts "You picked Scissors and computer picked Rock."
-    puts "Rock destroys Scissors."
-    puts "Computer wins!"
-  elsif player_choice == "r" && computer_choice == "p"
-    puts "You picked Rock and computer picked Paper."
-    puts "Paper wraps Rock."
-    puts "Computer wins!"
-  elsif player_choice == "p" && computer_choice == "r"
-    puts "You picked Paper and computer picked Rock."
-    puts "Paper wraps Rock."
-    puts "Player wins!"
-  elsif player_choice == "s" && computer_choice == "p"
-    puts "You picked Scissors and computer picked Paper."
-    puts "Scissors cut through paper."
-    puts "Player wins!"
-  elsif player_choice == "r" && computer_choice == "s"
-    puts "You picked Rock and computer picked Scissors."
-    puts "Rock destroys Scissors."
-    puts "Player wins!"
+  elsif (player_choice == "p" && computer_choice == "r") || (player_choice == "s" && computer_choice == "p") || (player_choice == "r" && computer_choice == "s")
+    display_winning_message(player_choice, "Player", computer_choice, "Computer")
+  else 
+    display_winning_message(computer_choice, "Computer", player_choice, "Player")
   end
 
   puts "Play again? (y/n)"
